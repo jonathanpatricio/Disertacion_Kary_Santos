@@ -5,6 +5,7 @@ library(dplyr)
 library(stargazer)
 library(epiR)
 library(DescTools)
+library(table1)
 
 #Leyendo la base de datos
 BD <- read_excel("Cuadros de la Disertacion v1.2.xlsx")
@@ -28,6 +29,15 @@ BD$M_Tipo_atención <- factor(BD$M_Tipo_atención); BD$M_Tipo_atención <- relev
 BD$M_Comorbilidad <- factor(BD$M_Comorbilidad, labels = c("No", "Si"))
 BD$M_COVID <- factor(BD$M_COVID, labels = c("No", "Si"))
 BD$M_Época_pandemia <- factor(BD$M_Época_pandemia, labels = c("No", "Si"))
+
+#Tabla para análisis exploratorio
+table1( ~ M_Edad + M_Grupo_edad  + M_Afiliación_Seguro +
+          M_Embarazada + M_Region_residencia + M_Nacionalidad + M_Tiempo_atención + 
+          M_Tiempo_atención_Dic + M_Región_atención + M_Movilidad + BD$M_COVID +M_Comorbilidad
+        | M_Muerte_materna
+          , 
+        data = BD )
+
 
 
 #Modelo
