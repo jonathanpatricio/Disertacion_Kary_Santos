@@ -139,19 +139,19 @@ Enhogar2021 %>% filter(H305 == 1 & H303 > 9 & H303 < 50) %>%  group_by(HPROVI) %
 
 #Grupo Socio económico familiar muy bajo
 Enhogar2021$grupo_muy_bajo <- if_else(condition = Enhogar2021$grupo_socioecono == 1 & Enhogar2021$H302 == 2, true = 1, false = 0)
-Enhogar2021 %>% filter(H303 > 9 & H303 < 50) %>% group_by(HPROVI) %>% 
+Enhogar2021 %>% filter(H302 == 2 & H303 > 9 & H303 < 50) %>% group_by(HPROVI) %>% 
   summarise(mean(grupo_muy_bajo, na.rm = TRUE)) %>% 
   kable()
 
 #Grupo Socio económico familiar bajo
 Enhogar2021$grupo_bajo <- if_else(condition = Enhogar2021$grupo_socioecono == 2  & Enhogar2021$H302 == 2, true = 1, false = 0)
-Enhogar2021 %>% filter(H303 > 9 & H303 < 50) %>% group_by(HPROVI) %>% 
+Enhogar2021 %>% filter(H302 == 2 & H303 > 9 & H303 < 50) %>% group_by(HPROVI) %>% 
   summarise(mean(grupo_bajo, na.rm = TRUE)) %>% 
   kable()
 
 #Grupo Socio económico familiar bajo y muy bajo
 Enhogar2021$grupo_bajo_muy_bajo <- if_else(condition = Enhogar2021$grupo_bajo == 1  | Enhogar2021$grupo_muy_bajo == 1, true = 1, false = 0)
-Enhogar2021 %>% filter(H303 > 9 & H303 < 50) %>%  group_by(HPROVI) %>% 
+Enhogar2021 %>% filter(H302 == 2 & H303 > 9 & H303 < 50) %>%  group_by(HPROVI) %>% 
   summarise(mean(grupo_bajo_muy_bajo, na.rm = TRUE)) %>% 
   kable()
 
